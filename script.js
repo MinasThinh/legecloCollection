@@ -8,21 +8,23 @@ setTimeout(() => {
     const thumbsID = thumbDB
     console.table(videosID)
     console.table(thumbsID)
-    let X = 100
+    let X = 110
     let Y = 200
     let posX = 0,posY = 0
-    let ratioX = 250,ratioY = 100
-    for(let i = 0;i<Math.min(videosID.length,21);++i) {
-        let thumbUrl = `https://raw.githubusercontent.com/feuberpvp/legecloCollection/main/Thumbnails/${thumbsID[i]}.png`;
+    let ratioX = 250,ratioY = 250
+    for(let i = 0;i<videosID.length;++i) {
+        let thumbid = thumbsID[i].replaceAll(" ","%20")
+        let thumbUrl = `https://raw.githubusercontent.com/feuberpvp/GlobalDatabase/main/Legeclo%20Collection/Thumbnails/${thumbid}.png`
         let name = thumbsID[i].charAt(0).toUpperCase() + thumbsID[i].slice(1,thumbsID[i].length-1) + " Eps " + thumbsID[i].charAt(thumbsID[i].length-1);
         CreateVideo(X + posX * ratioX,Y + posY * ratioY,thumbUrl,videosID[i],name) 
-        if (i == 7 || i == 14) ++posY,posX = 0
+        if ((i+1) % 7 == 0) ++posY,posX = 0
         else ++posX
     }
 },50);
 
 function CreateVideo(X,Y,bg,video,name) {
     // add button
+    console.log('bg ',bg)
     let elmt = document.createElement("button")
     elmt.style.width = "200px";
     elmt.style.height = "200px";
