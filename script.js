@@ -24,7 +24,7 @@ setTimeout(() => {
 
 function CreateVideo(X,Y,bg,video,name) {
     // add button
-    console.log('bg ',bg)
+    // console.log('bg ',bg)
     let elmt = document.createElement("button")
     elmt.style.width = "200px";
     elmt.style.height = "200px";
@@ -40,7 +40,12 @@ function CreateVideo(X,Y,bg,video,name) {
     }
     // add title
     let videoTitle = document.createElement("h1")
-    videoTitle.textContent = name
+    // modify name not to exceed limit (lim: 14)
+    let title = ""
+    if (name.split(" Eps")[0].length > 14) 
+        title = name.split(" Eps")[0].substring(0,11) + "... Eps " + name.split(" Eps")[1]
+    else title = name
+    videoTitle.textContent = title
     videoTitle.style.position = "absolute";
     videoTitle.style.top = `${Y + 110}px`
     videoTitle.style.left = `${X + 10}px`
@@ -58,12 +63,12 @@ function CreateVideo(X,Y,bg,video,name) {
     document.body.appendChild(elmt)
     document.body.appendChild(videoTitle)
     document.body.appendChild(AddToFavorite)
-    console.log("New video added!")
-    const abtrs = {
-        "Top": X,
-        "Left": Y,
-        "Background url": bg,
-        "Video ID": video,
-    }
-    console.table(abtrs)
+    // console.log("New video added!")
+    // const abtrs = {
+    //     "Top": X,
+    //     "Left": Y,
+    //     "Background url": bg,
+    //     "Video ID": video,
+    // }
+    // console.table(abtrs)
 }
